@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'level',
     ];
 
     /**
@@ -50,4 +51,5 @@ class User extends Authenticatable
      * @var array
      */
     protected $dates = ['email_verified_at'];
+    protected $guarded =['created_at','updated_at'];
 }

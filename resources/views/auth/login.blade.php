@@ -1,11 +1,26 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+            <div class="text-center">
+                <h1>Welcome to Chuon chuon's Admin Panel</h1>
+                This page is only available for administrators. Please log in to your account if you're an administrator...
+            </div>
+            <div class="guest-footer text-center container">
+                Or you can try our's application
+                <div class="row">
+                    <div class="col-md">
+                        <a class="btn btn-outline-primary btn-sm" href="">Chuonchuon Website</a>
+                    </div>
+                    <div class="col-md">
+                        <a class="btn btn-outline-primary btn-sm" href="">Chuonchuon for android</a>
+                    </div>
+                    <div class="col-md">
+                        <a class="btn btn-outline-primary btn-sm" href="">Desktop application</a>
+                    </div>
+                </div>
+            </div>
         </x-slot>
-
+        <b class="text-center title">Admin Login</b>
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -53,4 +68,5 @@
             </div>
         </form>
     </x-auth-card>
+
 </x-guest-layout>
