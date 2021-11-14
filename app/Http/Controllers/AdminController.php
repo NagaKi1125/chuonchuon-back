@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
     public function user_view(){
-        return view('user-manager');
+        $user = User::all();
+        return view('user-manager',['user'=>$user]);
     }
 
-    public function cloud_view(){
-        return view('cloud-manager');
-    }
+
 
     public function predict_view(){
         return view('predict-result');

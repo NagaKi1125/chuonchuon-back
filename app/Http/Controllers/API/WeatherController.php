@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Current;
 use App\Models\Daily;
 use App\Models\Hourly;
+use App\Models\RequestCount;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -16,6 +17,8 @@ class WeatherController extends Controller
     public function daily(){
         $url = "https://api.openweathermap.org/data/2.5/onecall?lat=16.0678&lon=108.2208&exclude=hourly,minutely,current&mode=json&units=metric&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
         $data = Http::get($url)->json();
+
+
         return response()->json($this->reformatDailyJson($data['daily']));
     }
 
@@ -63,6 +66,10 @@ class WeatherController extends Controller
         $url = $head_url."&&exclude=".$exclude.$url_2;
         $res = Http::get($url);
         $data = $res->json();
+
+        $count = new RequestCount();
+        $count->req_type = $type;
+        $count->save();
 
         return $this->returnJsonResult($data, $type);
     }
@@ -207,4 +214,6 @@ class WeatherController extends Controller
         }
         return $daily_list;
     }
+
+
 }

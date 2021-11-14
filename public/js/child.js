@@ -25,3 +25,20 @@ var geo_options = {
     maximumAge : 30000,
     timeout : 27000
 };
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+        $('#imagePreview')
+        .attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+// explain card-view
+$('#bologna-list a').on('click', function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+})

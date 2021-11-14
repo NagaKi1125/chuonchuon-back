@@ -27,11 +27,11 @@
                         {{ __('Clouds Type') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{--  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('predict.view')" :active="request()->routeIs('predict.view')">
                         {{ __('Predict Result') }}
                     </x-nav-link>
-                </div>
+                </div>  --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('weather_explain.view')" :active="request()->routeIs('weather_explain.view')">
                         {{ __('Explain Weather Elements') }}
@@ -86,6 +86,15 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('user.view')" :active="request()->routeIs('user.view')">
+                {{ __('Users') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('cloud.view')" :active="request()->routeIs('cloud.view')">
+                {{ __('Cloud types') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('weather_explain.view')" :active="request()->routeIs('weather_explain.view')">
+                {{ __('Weather explanation') }}
             </x-responsive-nav-link>
         </div>
 
