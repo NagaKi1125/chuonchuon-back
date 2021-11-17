@@ -13,12 +13,34 @@ class AdminController extends Controller
     }
 
 
-
     public function predict_view(){
         return view('predict-result');
     }
 
     public function weather_explain(){
         return view('weather-explain');
+    }
+
+    public function editUser($id){
+        $user = User::find($id);
+        return view('user-edit', ['user'=>$user]);
+    }
+
+    public function updateUser(Request $req, $id){
+        $user = User::find($id);
+
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->level = $req->level;
+        $user->save();
+        return redirect()->route('user.view');
+
+    }
+
+    public function deleteUser($id){
+        $user = User::find($id);
+        $user->level = 0;
+        $user->save();
+        return redirect()->route('user.view');
     }
 }

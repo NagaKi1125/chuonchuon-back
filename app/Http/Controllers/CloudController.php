@@ -27,16 +27,24 @@ class CloudController extends Controller
         $cloud->note = $req->note;
         $time = date("Y-m-d-h-i-sa");
         $img_thumbnail = "";
+
+        $req->validate([
+            'img_thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
         if($req->hasFile('img_thumbnail')){
             $avaname = $time.'chuonchuon--'.$req->cloud_code.'--'.$req->file('img_thumbnail')->getClientOriginalName();
-            $req->file('img_thumbnail')->move(public_path('img\uploads'),$avaname);
-            $img_thumbnail = "img/uploads/".$avaname;
+
+            if($req->file('img_thumbnail')->move(public_path('img/uploads/'),$avaname)){
+                $img_thumbnail = "img/uploads/".$avaname;
+            }else{
+                $img_thumbnail = "not saved to public folder";
+            }
         }else{
             $img_thumbnail = "1";
         }
-
-
         $cloud->img_thumbnail = $img_thumbnail;
+
         if($cloud->save()){
             return redirect()->route('cloud.view');
         }else{

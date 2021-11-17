@@ -40,15 +40,59 @@
                                 @endif
                             </td>
                             <td>
-                                <a class="btn btn-sm btn-outline-warning btn-rounded"><ion-icon name="create"></ion-icon></a>
-                                <a class="btn btn-sm btn-outline-danger btn-rounded"><ion-icon name="trash"></ion-icon></a>
+                                <form method="POST" action="{{ route('user.delete',[$u->_id]) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a class="btn btn-sm btn-outline-warning btn-rounded" role="button" data-toggle="collapse" id="heading{{ $u->_id }}"
+                                        data-target="#editUser{{ $u->id }}" aria-expanded="false" aria-controls="edit{{ $u->_id }}">
+                                        <ion-icon name="create"></ion-icon></a>
+                                    <button class="btn btn-sm btn-outline-danger btn-rounded"><ion-icon name="trash"></ion-icon></button>
+                                </form>
+
                             </td>
+                        </tr>
+                        {{-- edit --}}
+                        <tr class="collapse" id="editUser{{ $u->_id }}" aria-labelledby="heading{{ $u->_id }}">
+                            <form method="POST" action="{{ route('user.update',[$u->_id]) }}">
+                                @csrf
+                                @method('PUT')
+                                <th scope="row">
+                                    <input id="name" class="block mt-1 w-full" type="text" name="name" value="{{ $u->name }}" required autofocus />
+                                </th>
+                                <td>
+                                    <input id="email" class="block mt-1 w-full" type="email" name="email" value="{{ $u->email }}" required />
+                                </td>
+
+                                <td>
+                                    <select class="block mt-1 w-full" required data-live-search="true" id="level" name="level">
+                                        @if($u->level == 1)
+                                            <option value="1" selected>Adminstrator</option>
+                                            <option value="2">User</option>
+                                            <option value="0">Tài khoản bị vô hiệu</option>
+                                        @elseif($u->level == 2)
+                                            <option value="1">Adminstrator</option>
+                                            <option value="2" selected>User</option>
+                                            <option value="0">Tài khoản bị vô hiệu</option>
+                                        @else
+                                            <option value="1">Adminstrator</option>
+                                            <option value="2">User</option>
+                                            <option value="0" selected>Tài khoản bị vô hiệu</option>
+                                        @endif
+                                </select>
+                                </td>
+
+                                <td>
+                                    <x-button class="block mt-1">
+                                        {{ __('Update') }}
+                                    </x-button>
+                                </td>
+
+                            </form>
                         </tr>
                         @endforeach
 
                     </tbody>
                 </table>
-
                 </div>
             </div>
         </div>

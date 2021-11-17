@@ -36,6 +36,10 @@ Route::post('users', [LocationController::class, 'saveLocation'])->name('user.lo
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('users',[AdminController::class, 'user_view'])->name('user.view');
+    Route::prefix('user')->group( function() {
+        Route::put('update/{id}',[AdminController::class, 'updateUser'])->name('user.update');
+        Route::delete('delete/{id}',[AdminController::class, 'deleteUser'])->name('user.delete');
+    });
 
     Route::get('cloud',[CloudController::class, 'cloud_view'])->name('cloud.view');
     Route::prefix('cloud')->group( function() {
