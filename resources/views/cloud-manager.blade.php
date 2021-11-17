@@ -44,7 +44,7 @@
                             <div id="collapse{{ $loop->index }}" class="collapse" aria-labelledby="heading{{ $loop->index }}" data-parent="#accordion">
                               <div class="row">
                                 <div class="col-md-3">
-                                    <img class="card-img-top" src="{{ secure_asset($c->img_thumbnail) }}" alt="Card image cap" width="20%">
+                                    <img class="card-img-top" src="{{ asset($c->img_thumbnail) }}" alt="Card image cap" width="20%">
                                 </div>
                                 <div class="col-md-9">
                                     <div class="card-body">
@@ -105,7 +105,7 @@
                                                 name="img_thumbnail" autofocus onchange="readURL(this)"/>
                                             </div>
                                             <div class="col-md">
-                                                <img class="img_thumbnail" src="{{ secure_asset($c->img_thumbnail) }}" id="imagePreview" width="50%">
+                                                <img class="img_thumbnail" src="{{ asset($c->img_thumbnail) }}" id="imagePreview" width="50%">
                                             </div>
                                         </div>
                                     </div>

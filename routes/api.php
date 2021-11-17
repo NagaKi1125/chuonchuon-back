@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\UserRequest;
 use App\Http\Controllers\API\WeatherController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 Route::get('weather-daily',[WeatherController::class, 'daily']);
 Route::get('weather-minutely',[WeatherController::class, 'minutely']);
@@ -26,3 +27,15 @@ Route::get('weather-current',[WeatherController::class, 'current']);
 Route::get('weather',[WeatherController::class, 'allin']);
 
 Route::post('weather-now',[WeatherController::class,"get_weather"]);
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth',
+], function () {
+    Route::post('/login', [UserRequest::class, 'login']);
+    Route::post('/register', [UserRequest::class, 'register']);
+    Route::post('/logout', [UserRequest::class, 'logout']);
+    Route::post('/refresh', [UserRequest::class, 'refresh']);
+    Route::get('/user-profile', [UserRequest::class, 'userProfile']);
+    Route::post('/change-pass', [UserRequest::class, 'changePassWord']);
+});

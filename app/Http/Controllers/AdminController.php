@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function user_view(){
-        $user = User::all();
+        $user = User::paginate(15);
         return view('user-manager',['user'=>$user]);
     }
 

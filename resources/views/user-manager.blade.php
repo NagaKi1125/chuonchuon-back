@@ -93,6 +93,7 @@
 
                     </tbody>
                 </table>
+                <div class="text-right">{{ $user->links() }}</div>
                 </div>
             </div>
         </div>

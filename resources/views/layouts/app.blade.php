@@ -13,16 +13,17 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
         <!-- Scripts -->
 
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
-        <script src="{{ secure_asset('js/child.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/child.js') }}" defer></script>
 
     </head>
     <body class="font-sans antialiased">
+
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -32,11 +33,18 @@
                     {{ $header }}
                 </div>
             </header>
+            @if (Auth::user()->level == 1)
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+            @else
+                <div class="text-center">
+                    <h3>Did not have permission</h3>
+                    <p>This page is only available for administrators only. Please visit ours website instead</p>
+                </div>
+            @endif
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
