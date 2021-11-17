@@ -51,6 +51,7 @@ class UserRequest extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|min:6',
+
         ]);
 
         if($validator->fails()){
@@ -59,7 +60,11 @@ class UserRequest extends Controller
 
         $user = User::create(array_merge(
                     $validator->validated(),
-                    ['password' => bcrypt($request->password)]
+                    [
+                        'level' => 2,
+                        'password' => bcrypt($request->password),
+                    ]
+
                 ));
 
         return response()->json([
