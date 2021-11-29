@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ApplicationController;
 use App\Http\Controllers\API\UserRequest;
 use App\Http\Controllers\API\WeatherController;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ Route::get('weather-current',[WeatherController::class, 'current']);
 Route::get('weather',[WeatherController::class, 'allin']);
 
 Route::post('weather-now',[WeatherController::class,"get_weather"]);
+Route::post('predict',[ApplicationController::class, "predictResult"]);
 
 Route::group([
     'middleware' => 'api',
