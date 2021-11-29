@@ -13,13 +13,13 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/admin.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
         <!-- Scripts -->
 
-        <script src="{{ secure_asset('js/app.js') }}" defer></script>
-        <script src="{{ secure_asset('js/child.js') }}" defer></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/child.js') }}" defer></script>
 
     </head>
     <body class="font-sans antialiased">
