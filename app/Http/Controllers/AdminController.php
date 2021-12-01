@@ -9,21 +9,21 @@ class AdminController extends Controller
 {
     public function user_view(){
         $user = User::paginate(15);
-        return view('user-manager',['user'=>$user]);
+        return view('admin/user-manager',['user'=>$user]);
     }
 
 
     public function predict_view(){
-        return view('predict-result');
+        return view('admin/predict-result');
     }
 
     public function weather_explain(){
-        return view('weather-explain');
+        return view('admin/weather-explain');
     }
 
     public function editUser($id){
         $user = User::find($id);
-        return view('user-edit', ['user'=>$user]);
+        return view('admin/user-edit', ['user'=>$user]);
     }
 
     public function updateUser(Request $req, $id){

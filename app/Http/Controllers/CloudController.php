@@ -12,11 +12,11 @@ class CloudController extends Controller
 
     public function cloud_view(){
         $cloud = Cloud::all();
-        return view('cloud-manager', ['cloud'=>$cloud]);
+        return view('admin/cloud-manager', ['cloud'=>$cloud]);
     }
 
     public function getAdd(){
-        return view('cloud-add');
+        return view('admin/cloud-add');
     }
     public function store_cloud(Request $req){
         $cloud = new Cloud();

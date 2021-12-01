@@ -17,6 +17,6 @@ class LocationController extends Controller
         $geo->lon = $lon;
         $geo->save();
 
-        return view('adminhome');
+        return view('admin/adminhome');
     }
 }

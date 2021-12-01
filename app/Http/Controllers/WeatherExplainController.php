@@ -11,7 +11,7 @@ class WeatherExplainController extends Controller
     public function getExplain(){
         $explain_checked = WeatherExplanation::where('checked',1)->get();
         $explain_un_checked = WeatherExplanation::where('checked',0)->get();
-        return view('weather-explain', ['checked'=>$explain_checked, 'unchecked'=>$explain_un_checked]);
+        return view('admin/weather-explain', ['checked'=>$explain_checked, 'unchecked'=>$explain_un_checked]);
     }
 
     public function checked($id){
