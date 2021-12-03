@@ -108,7 +108,6 @@ class WebPageController extends Controller
         $cities = array_map('str_getcsv',file($file_cities));
         array_shift($cities);
         $city_list = [];
-        $location = null;
         foreach($cities as $c){
             $city = new City();
 
@@ -124,6 +123,9 @@ class WebPageController extends Controller
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
+        $name = $currentUserInfo->countryName.', '.$currentUserInfo->cityName;
+        $location = [$lat,$lon,$name];
+
         $url = "https://api.openweathermap.org/data/2.5/onecall?lat=".$lat."&lon=".$lon."&exclude=minutely,&mode=json&units=metric&lang=vi&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
         $data = Http::get($url)->json();
         // current weather
