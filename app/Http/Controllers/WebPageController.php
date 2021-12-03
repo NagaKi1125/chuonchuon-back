@@ -17,7 +17,7 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = $this->getClientIp();
+        $ip = $this->request()->ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -38,7 +38,7 @@ class WebPageController extends Controller
     }
 
     public function hourlyForecast(){
-        $ip = $this->getClientIp();
+        $ip = $this->request()->ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -110,11 +110,11 @@ class WebPageController extends Controller
             array_push($city_list, $city);
         }
 
-        $ip = $this->getClientIp();
+        $ip = $this->request()->ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
-        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=".$lat."8&lon=".$lon."&exclude=minutely,&mode=json&units=metric&lang=vi&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
+        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=".$lat."&lon=".$lon."&exclude=minutely,&mode=json&units=metric&lang=vi&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
         $data = Http::get($url)->json();
         // current weather
         $current = $this->reformatCurrentJson($data['current']);
