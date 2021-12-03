@@ -17,7 +17,7 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = $this->request()->ip();
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -38,7 +38,7 @@ class WebPageController extends Controller
     }
 
     public function hourlyForecast(){
-        $ip = $this->request()->ip();
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -110,7 +110,7 @@ class WebPageController extends Controller
             array_push($city_list, $city);
         }
 
-        $ip = $this->request()->ip();
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
