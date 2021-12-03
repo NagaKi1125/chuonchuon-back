@@ -46,7 +46,7 @@
 
 <div class="hero text-center" style="background-image: url({{ secure_asset('img/system/download.jpg') }})">
     <p class="title">CHUỒN CHUỒN - DỰ BÁO THỜI TIẾT</p>
-    <form action="{{ route('search') }}" method="POST">
+    <form action="{{ route('search') }}" method="GET">
         @csrf
         <select name="select" class="selectpicker" data-live-search="true" required>
             @foreach ($cities as $c)

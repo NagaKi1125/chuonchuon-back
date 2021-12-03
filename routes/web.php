@@ -36,7 +36,7 @@ Route::post('users', [LocationController::class, 'saveLocation'])->name('user.lo
 Route::get('daily-forecast', [WebPageController::class, 'dailyForecast'])->name('daily-forecast');
 Route::get('hourly-forecast',[WebPageController::class, 'hourlyForecast'])->name('hourly-forecast');
 Route::get('about-chuonchuon',[WebPageController::class, 'about_us'])->name('about');
-Route::post('search/city-weather',[WebPageController::class, 'search'])->name('search');
+Route::get('search/city-weather',[WebPageController::class, 'search'])->name('search');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('users',[AdminController::class, 'user_view'])->name('user.view');
