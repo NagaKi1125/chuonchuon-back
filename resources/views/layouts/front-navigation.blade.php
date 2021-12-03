@@ -3,7 +3,7 @@
 <div class="site-header">
     <div class="container">
         <a href="welcome.blade.php" class="branding">
-            <img src="{{ asset('img/system/logo_chuonchuon.png') }}" alt="" class="logo" width="70px" border-radius="10px">
+            <img src="{{ secure_asset('img/system/logo_chuonchuon.png') }}" alt="" class="logo" width="70px" border-radius="10px">
             <div class="logo-type">
                 <h1 class="site-title">Chuồn Chuồn</h1>
                 <small class="site-description">Dự báo thời tiết</small>

@@ -44,7 +44,7 @@
 
 @endphp
 
-<div class="hero text-center" style="background-image: url({{ asset('img/system/download.jpg') }})">
+<div class="hero text-center" style="background-image: url({{ secure_asset('img/system/download.jpg') }})">
     <p class="title">CHUỒN CHUỒN - DỰ BÁO THỜI TIẾT</p>
     <form action="{{ route('search') }}" method="POST">
         @csrf
@@ -89,10 +89,10 @@
                     </div>
 
                     <div class="d-flex p-2 justify-content-between">
-                        <div class="d-flex p-2"><img src="{{ asset('img/icons/humidity.png') }}" alt="" width="20px">{{ $current->humidity }}%</div>
-                        <div class="d-flex p-2"><img src="{{ asset('img/icons/wind_speed.png') }}" alt="" width="20px">{{ $current->wind_speed }} m/s</div>
+                        <div class="d-flex p-2"><img src="{{ secure_asset('img/icons/humidity.png') }}" alt="" width="20px">{{ $current->humidity }}%</div>
+                        <div class="d-flex p-2"><img src="{{ secure_asset('img/icons/wind_speed.png') }}" alt="" width="20px">{{ $current->wind_speed }} m/s</div>
                     </div>
-                    <div class="d-flex p-2"><img src="{{ asset('img/icons/wind_deg.png') }}" alt="" width="20px">{{ get_wind_direction($current->wind_deg) }}</div>
+                    <div class="d-flex p-2"><img src="{{ secure_asset('img/icons/wind_deg.png') }}" alt="" width="20px">{{ get_wind_direction($current->wind_deg) }}</div>
 
                 </div>
             </div>
@@ -136,11 +136,11 @@
         </div>
         <div class="container col-md-9">
             <div class="row">
-                <div class="col-md"><img src="{{ asset('img/icons/wind_speed.png') }}" alt=""width="30px" >Wind Speed:<br> {{ $current->wind_speed }}m/s</div>
-                <div class="col-md"><img src="{{ asset('img/icons/uv.png') }}" alt=""width="30px" >UV index:<br> {{  get_uvi_result($current->uvi) }}</div>
-                <div class="col-md"><img src="{{ asset('img/icons/pressure.png') }}" alt=""width="30px" >Pressure:<br> {{ $current->pressure }}hPa</div>
-                <div class="col-md"><img src="{{ asset('img/icons/dew_point.png') }}" alt=""width="30px" >Dew Point:<br> {{ $current->dew_point }}°C</div>
-                <div class="col-md"><img src="{{ asset('img/icons/visibility.png') }}" alt=""width="30px" >Visibility:<br> {{ $current->visibility }}m</div>
+                <div class="col-md"><img src="{{ secure_asset('img/icons/wind_speed.png') }}" alt=""width="30px" >Wind Speed:<br> {{ $current->wind_speed }}m/s</div>
+                <div class="col-md"><img src="{{ secure_asset('img/icons/uv.png') }}" alt=""width="30px" >UV index:<br> {{  get_uvi_result($current->uvi) }}</div>
+                <div class="col-md"><img src="{{ secure_asset('img/icons/pressure.png') }}" alt=""width="30px" >Pressure:<br> {{ $current->pressure }}hPa</div>
+                <div class="col-md"><img src="{{ secure_asset('img/icons/dew_point.png') }}" alt=""width="30px" >Dew Point:<br> {{ $current->dew_point }}°C</div>
+                <div class="col-md"><img src="{{ secure_asset('img/icons/visibility.png') }}" alt=""width="30px" >Visibility:<br> {{ $current->visibility }}m</div>
             </div>
         </div>
     </div>

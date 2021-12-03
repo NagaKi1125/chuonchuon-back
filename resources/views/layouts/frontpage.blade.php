@@ -17,15 +17,15 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/guest.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/guest.css') }}">
 
 
 		<!-- Loading main css file -->
-        <link rel="stylesheet" href="{{ asset('css/front.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/front.css') }}">
+		<link rel="stylesheet" href="{{ secure_asset('css/styles.css') }}">
 
-		<link rel='shortcut icon' href='{{ asset('img/system/logo_chuonchuon.png') }}' />
+		<link rel='shortcut icon' href='{{ secure_asset('img/system/logo_chuonchuon.png') }}' />
 	</head>
 
 	<body>

@@ -2,7 +2,7 @@
 
 @section('body')
 
-<div class="hero" style="background-image: url({{ asset('img/system/download.jpg') }})">
+<div class="hero" style="background-image: url({{ secure_asset('img/system/download.jpg') }})">
     <div class="container wrap-banner">
         <p class="title">THỜI TIẾT 7 NGÀY TỚI</p>
     </div>
@@ -106,11 +106,11 @@
                 <div class="item">{{ $d->weather_description }}</div>
 
                 <div class="item-right">{{ $d->wind_speed }} m/s</div>
-                <div class="item-right"><img src="{{ asset('img/icons/wind_speed.png') }}" width="30px"></div>
+                <div class="item-right"><img src="{{ secure_asset('img/icons/wind_speed.png') }}" width="30px"></div>
                 <div class="item-right">{{ $wind_deg }}</div>
-                <div class="item-right"><img src="{{ asset('img/icons/wind_deg.png') }}" width="30px"></div>
+                <div class="item-right"><img src="{{ secure_asset('img/icons/wind_deg.png') }}" width="30px"></div>
                 <div class="item-right">{{ $d->humidity }}%</div>
-                <div class="item-right"><img src="{{ asset('img/icons/humidity.png') }}" width="30px"></div>
+                <div class="item-right"><img src="{{ secure_asset('img/icons/humidity.png') }}" width="30px"></div>
             </div>
         </div>
     </div>
@@ -138,27 +138,27 @@
                     <div class="details sun-moon">
                         <div class="row sun d-flex justify-content-between">
                             <div class="d-flex p-2 align-middle">
-                                <img src="{{ asset('img/icons/sunrise.png') }}" width="30px">
+                                <img src="{{ secure_asset('img/icons/sunrise.png') }}" width="30px">
                                 {{ $d->sunrise }}
                             </div>
                             <div class="d-flex p-2 align-middle">
-                                <img src="{{ asset('img/icons/sunset.png') }}" width="30px">
+                                <img src="{{ secure_asset('img/icons/sunset.png') }}" width="30px">
                                 {{ $d->sunset }}
                             </div>
                         </div>
                         <div class="row moon d-flex justify-content-between">
                             <div class="d-flex p-2 align-middle">
-                                <img src="{{ asset('img/icons/moonrise.png') }}" width="30px">
+                                <img src="{{ secure_asset('img/icons/moonrise.png') }}" width="30px">
                                 {{ $d->moonrise }}
                             </div>
                             <div class="d-flex p-2 align-middle">
-                                <img src="{{ asset('img/icons/moonset.png') }}" width="30px">
+                                <img src="{{ secure_asset('img/icons/moonset.png') }}" width="30px">
                                 {{ $d->moonset }}
                             </div>
                         </div>
                         <div class="row moon d-flex justify-content-between">
                             <div class="d-flex p-2 align-middle">
-                                <img src="{{ asset('img/icons/moon_phase.png') }}" width="30px">
+                                <img src="{{ secure_asset('img/icons/moon_phase.png') }}" width="30px">
                                 {{ $moonphase }}
                             </div>
                         </div>
@@ -169,38 +169,38 @@
                     <div class="details life">
                         <div class="row text-center">
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/uv.png') }}" alt="Tia Uv" width="30px">
+                                <img src="{{ secure_asset('img/icons/uv.png') }}" alt="Tia Uv" width="30px">
                                 {{ $uv_result }}
                             </div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/humidity.png') }}" alt="Độ ẩm" width="30px">
+                                <img src="{{ secure_asset('img/icons/humidity.png') }}" alt="Độ ẩm" width="30px">
                                 {{ $d->humidity }} %
                             </div>
                             <div class="w-100"></div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/pressure.png') }}" alt="Áp suất" width="30px">
+                                <img src="{{ secure_asset('img/icons/pressure.png') }}" alt="Áp suất" width="30px">
                                 {{ $d->pressure }} hPa
                             </div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/dew_point.png') }}" alt="Điểm sương" width="30px">
+                                <img src="{{ secure_asset('img/icons/dew_point.png') }}" alt="Điểm sương" width="30px">
                                 {{ $d->dew_point }} °C
                             </div>
                             <div class="w-100"></div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/wind_speed.png') }}" alt="Xác suất mưa" width="30px">
+                                <img src="{{ secure_asset('img/icons/wind_speed.png') }}" alt="Xác suất mưa" width="30px">
                                 {{ $pop_chance }}
                             </div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/cloudy.png') }}" alt="Độ che phủ" width="30px">
+                                <img src="{{ secure_asset('img/icons/cloudy.png') }}" alt="Độ che phủ" width="30px">
                                 {{ $d->clouds }} %
                             </div>
                             <div class="w-100"></div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/wind_deg.png') }}" alt="Tốc độ gió" width="30px">
+                                <img src="{{ secure_asset('img/icons/wind_deg.png') }}" alt="Tốc độ gió" width="30px">
                                 {{ $d->wind_speed}} m/s
                             </div>
                             <div class="d-flex p-2 col-md">
-                                <img src="{{ asset('img/icons/wind_deg.png') }}" alt="Hướng gió" width="30px">
+                                <img src="{{ secure_asset('img/icons/wind_deg.png') }}" alt="Hướng gió" width="30px">
                                 {{ $wind_deg }}
                             </div>
 
