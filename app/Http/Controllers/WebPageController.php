@@ -29,26 +29,26 @@ class WebPageController extends Controller
     public function dailyForecast(){
         $ip = $this->getIpAddress();
         $currentUserInfo = \Location::get($ip);
-        // $lat= $currentUserInfo['latitude'];
-        // $lon =$currentUserInfo['longitude'];
+        $lat= $currentUserInfo['latitude'];
+        $lon =$currentUserInfo['longitude'];
         dd($currentUserInfo);
         // $lat = 14.94826;
         // $lon = 108.9125679;
 
-        // $url = "https://api.openweathermap.org/data/2.5/onecall?lat=".$lat."8&lon=".$lon."&exclude=hourly,minutely,current&mode=json&units=metric&lang=vi&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
-        // $data = Http::get($url)->json();
+        $url = "https://api.openweathermap.org/data/2.5/onecall?lat=".$lat."8&lon=".$lon."&exclude=hourly,minutely,current&mode=json&units=metric&lang=vi&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
+        $data = Http::get($url)->json();
 
-        // $daily = $this->reformatDailyJson($data['daily']);
+        $daily = $this->reformatDailyJson($data['daily']);
 
-        // $count = new RequestCount();
-        // $count->req_type = 3;
-        // $count->save();
+        $count = new RequestCount();
+        $count->req_type = 3;
+        $count->save();
 
-        // return view('web-front.dailyForecast',['daily'=>$daily]);
+        return view('web-front.dailyForecast',['daily'=>$daily]);
     }
 
     public function hourlyForecast(){
-        $ip = Request::ip();
+        $ip = $this->getIpAddress();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -120,7 +120,7 @@ class WebPageController extends Controller
             array_push($city_list, $city);
         }
 
-        $ip = Request::ip();
+        $ip = $this->getIpAddress();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
