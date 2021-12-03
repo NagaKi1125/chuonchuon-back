@@ -17,7 +17,7 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = \Request::ip();
+        $ip = file_get_contents('https://www.ip2location.com/');
         $currentUserInfo = Location::get($ip);
         // $lat= $currentUserInfo['latitude'];
         // $lon =$currentUserInfo['longitude'];
