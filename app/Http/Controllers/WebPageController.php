@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
-use Illuminate\Http\Request;
+use Request;
 use Stevebauman\Location\Facades\Location;
 use Illuminate\Support\Facades\Http;
 use App\Models\Daily;
