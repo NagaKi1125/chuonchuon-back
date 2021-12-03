@@ -17,7 +17,7 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = request()->getClientIp();
+        $ip = $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
         $currentUserInfo = Location::get($ip);
         // $lat= $currentUserInfo['latitude'];
         // $lon =$currentUserInfo['longitude'];
