@@ -17,7 +17,7 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = trim(shell_exec("dig +short myip.opendns.com @resolver1.opendns.com"));
+        $ip = file_get_contents('https://api.ipify.org');
         $currentUserInfo = Location::get($ip);
         // $lat= $currentUserInfo['latitude'];
         // $lon =$currentUserInfo['longitude'];
@@ -34,7 +34,7 @@ class WebPageController extends Controller
         // $count->req_type = 3;
         // $count->save();
 
-        return view('web-front.dailyForecast',['daily'=>$daily]);
+        // return view('web-front.dailyForecast',['daily'=>$daily]);
     }
 
     public function hourlyForecast(){
