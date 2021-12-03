@@ -16,8 +16,18 @@ use App\Models\RequestCount;
 class WebPageController extends Controller
 {
 
+    function getIpAddress() {
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ipAddresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            return trim(end($ipAddresses));
+        }
+        else {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+    }
+
     public function dailyForecast(){
-        $ip = Request::ip();
+        $ip = $this->getIpAddress();
         $currentUserInfo = \Location::get($ip);
         // $lat= $currentUserInfo['latitude'];
         // $lon =$currentUserInfo['longitude'];
