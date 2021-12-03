@@ -13,6 +13,7 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "stevebauman/location": "^6.2",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

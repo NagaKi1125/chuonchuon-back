@@ -1,240 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+@extends('layouts.frontpage')
 
-		<title>Compass Starter by Ariona, Rian</title>
+@section('body')
 
-		<!-- Loading third party fonts -->
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
+@php
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-        <!-- Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
-        <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/guest.css') }}">
+        function check_pop($pop){
+            $pop = $pop * 100;
+            if($pop < 20){
+                $pop_text = "Không có mưa";
+            }else if($pop >=20 && $pop < 30){
+                $pop_text = "Khả năng thấp";
+            }else if($pop >= 30 && $pop < 50){
+                $pop_text = "Có thể có mưa";
+            }else{
+                $pop_text = "Mưa";
+            }
+           return $pop.'% - '.$pop_text;
+        }
 
 
-		<!-- Loading main css file -->
-		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        function get_wind_direction($deg){
+            $directions = ["N - Bắc", "NNE - Bắc Đông Bắc", "NE - Đông Bắc", "ENE - Đông Đông Bắc", "E - Đông",
+            "ESE - Đông Đông Nam", "SE - Đông Nam", "SSE - Nam Đông Nam", "S - Nam", "SSW - Nam Tây Nam",
+            "SW - Tây Nam", "WSW - Tây Tây Nam", "W - Tây", "WNW - Tây Tây Bắc",
+            "NW - Tây Bắc", "NNW - Bắc Tây Bắc"];
+            $val = round((($deg / 22.5) + 0.5),0);
 
-		<link rel='shortcut icon' href='{{ asset('img/system/logo_chuonchuon.png') }}' />
-	</head>
+            return $directions[($val % 16)];
+        }
 
-	<body>
+        function get_uvi_result($uvi){
+            if($uvi >= 0 && $uvi <= 2){
+                $uv_text = "Thấp";
+            }else if($uvi >= 8 && $uvi <= 10){
+                $uv_text = "Gây hại";
+            }else if($uvi >= 11){
+                $uv_text = "Rất nguy hiểm";
+            }else{
+                $uv_text = "Bình thường";
+            }
+            return $uvi.' - '.$uv_text;
+        }
 
-		<div class="site-content">
-			<div class="site-header">
-				<div class="container">
-					<a href="welcome.blade.php" class="branding">
-						<img src="{{ asset('img/system/logo_chuonchuon.png') }}" alt="" class="logo" width="70px" border-radius="10px">
-						<div class="logo-type">
-							<h1 class="site-title">Chuon Chuon</h1>
-							<small class="site-description">Dự báo thời tiết</small>
-						</div>
-					</a>
+@endphp
 
-					<!-- Default snippet for navigation -->
-					<div class="main-navigation">
-						<button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
-						<ul class="menu">
-							<li class="menu-item current-menu-item"><a href="index.html">Thời tiết hôm nay</a></li>
-							<li class="menu-item"><a href="news.html">Hàng giờ</a></li>
-							<li class="menu-item"><a href="#livecamera">7 ngày kế tiếp</a></li>
-							<li class="menu-item"><a href="photos.html">Giới thiệu</a></li>
-                            @auth
-                            <div class="dropdown">
-								<button class="dropbtn"> {{ Auth::user()->name }}</button>
-                                <div class="dropdown-content">
-									<a href="#">Đăng Xuất</a>
-								</div>
-							</div>
-                            @else
-                                <a href="{{ route('login') }}" class="btn btn-outline-primary btn-sm">Đăng nhập</a>
-                                <a href="{{ route('register') }}" class="btn btn-sm primary bt-sm">Đăng ký</a>
-                            @endauth
+<div class="hero text-center" style="background-image: url({{ asset('img/system/download.jpg') }})">
+    <p class="title">CHUỒN CHUỒN - DỰ BÁO THỜI TIẾT</p>
+    <form action="{{ route('search') }}" method="POST">
+        @csrf
+        <select name="select" class="selectpicker" data-live-search="true" required>
+            @foreach ($cities as $c)
+            <option value="{{ $c->country }}, {{ $c->city }}-{{ $c->lat }}-{{ $c->lng }}">
+                {{ $c->country }}, {{ $c->city }}
+            </option>
+            @endforeach
+        </select>
+        <input type="submit" value="Find">
+    </form>
 
-					</div> <!-- .main-navigation -->
-
-					<div class="mobile-navigation"></div>
-
-				</div>
-			</div> <!-- .site-header -->
-
-			<div class="hero" style="background-image: url({{ asset('img/system/download.jpg') }})">
-				<div class="container">
-					<form action="#" class="find-location">
-						<input type="text" placeholder="Find your location...">
-						<input type="submit" value="Find">
-					</form>
-
-				</div>
-			</div>
-			<div class="forecast-table">
-				<div class="container">
-					<div class="forecast-container">
-						<div class="today forecast">
-							<div class="forecast-header">
-								<div class="day">Monday</div>
-								<div class="date">6 Oct</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="location">New York</div>
-								<div class="degree">
-									<div class="num">23<sup>o</sup>C</div>
-									<div class="forecast-icon">
-										<img src="{{ asset('img/icons/icon-1.svg') }}" alt="" width=90>
-									</div>
-								</div>
-								<span><img src="{{ asset('img/icons/icon-umberella.png') }}" alt="">20%</span>
-								<span><img src="{{ asset('img/icons/icon-wind.png') }}" alt="">18km/h</span>
-								<span><img src="{{ asset('img/icons/icon-compass.png') }}" alt="">East</span>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Tuesday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-3.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Wednesday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-5.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Thursday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-7.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Friday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-12.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Saturday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-13.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-						<div class="forecast">
-							<div class="forecast-header">
-								<div class="day">Sunday</div>
-							</div> <!-- .forecast-header -->
-							<div class="forecast-content">
-								<div class="forecast-icon">
-									<img src="images/icons/icon-14.svg" alt="" width=48>
-								</div>
-								<div class="degree">23<sup>o</sup>C</div>
-								<small>18<sup>o</sup></small>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<main class="main-content">
-				<div class="fullwidth-block">
-					<div class="container">
-						<h2 class="section-title" id="livecamera">Hourly Weather</h2>
-						<div class="row">
-							<div class="col-md-3 col-sm-6">
-								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-1.jpg" alt=""></figure>
-									<h3 class="location">New York</h3>
-									<small class="date">8 oct, 8:00AM</small>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-2.jpg" alt=""></figure>
-									<h3 class="location">Los Angeles</h3>
-									<small class="date">8 oct, 8:00AM</small>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-3.jpg" alt=""></figure>
-									<h3 class="location">Chicago</h3>
-									<small class="date">8 oct, 8:00AM</small>
-								</div>
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="live-camera">
-									<figure class="live-camera-cover"><img src="images/live-camera-4.jpg" alt=""></figure>
-									<h3 class="location">London</h3>
-									<small class="date">8 oct, 8:00AM</small>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="fullwidth-block" data-bg-color="#262936">
-					<div class="container">
-
-					</div>
-				</div>
-
-				<div class="fullwidth-block">
-					<div class="container">
-
-					</div>
-				</div>
-			</main> <!-- .main-content -->
+</div>
 
 
-		</div>
+<div class="forecast-table">
+    <div class="container">
+        <div class="forecast-container">
+            <div class="today forecast">
+                <div class="forecast-header">
+                    <div class="day">{{ $current->dt }}</div>
+                    {{-- <div class="date">6 Oct</div> --}}
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="degree row">
+                        <div class="num col-md">
+                            <div class="location" style="font-size:25px;">
+                                @if ($location)
+                                {{ $location[2] }}
+                                @else
+                                Quảng Ngãi
+                                @endif
+
+                            </div>
+                            {{ round($current->temp,0) }}°C
+                        </div>
+                        <div calass="col-md">
+                            <img src="{{ $current->weather_icon }}" alt="" width=70>
+                            <div>{{ $current->weather_description }}</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex p-2 justify-content-between">
+                        <div class="d-flex p-2"><img src="{{ asset('img/icons/humidity.png') }}" alt="" width="20px">{{ $current->humidity }}%</div>
+                        <div class="d-flex p-2"><img src="{{ asset('img/icons/wind_speed.png') }}" alt="" width="20px">{{ $current->wind_speed }} m/s</div>
+                    </div>
+                    <div class="d-flex p-2"><img src="{{ asset('img/icons/wind_deg.png') }}" alt="" width="20px">{{ get_wind_direction($current->wind_deg) }}</div>
+
+                </div>
+            </div>
+
+            @foreach ($daily as $d)
+            @if ($loop->index == 0)
+
+            @else
+            <div class="forecast">
+                <div class="forecast-header">
+                    <div class="day">{{ $d->dt }}</div>
+                </div> <!-- .forecast-header -->
+                <div class="forecast-content">
+                    <div class="forecast-icon text-center">
+                        <img src="{{ $d->weather_icon }}" alt="" width=50>
+
+                        {{ $d->weather_description }}
+
+                    </div>
+                    <div class="degree" style="font-size:16px;">{{ round($d->temp_max,0) }}°C</div>
+                    <small style="font-size:13px;">{{ round($d->temp_min,0) }}°C</small>
+                </div>
+            </div>
+            @endif
+
+            @endforeach
+
+        </div>
+    </div>
+</div>
+<div class="widget-container container">
+    <div class="row">
+        <div class="bottom-left col-md-3 d-flex p-2">
+            <h1 id="temperature">{{ round($current->temp,0) }}°C</h1>
+            <h2 id="temp-divider">/</h2>
+            <div id="fahrenheit">
+                <p style="font-size:10px;">Cảm giác như</p>
+                <h2>{{ round($current->feels_like,0) }}&degC</h2>
+            </div>
+
+        </div>
+        <div class="container col-md-9">
+            <div class="row">
+                <div class="col-md"><img src="{{ asset('img/icons/wind_speed.png') }}" alt=""width="30px" >Wind Speed:<br> {{ $current->wind_speed }}m/s</div>
+                <div class="col-md"><img src="{{ asset('img/icons/uv.png') }}" alt=""width="30px" >UV index:<br> {{  get_uvi_result($current->uvi) }}</div>
+                <div class="col-md"><img src="{{ asset('img/icons/pressure.png') }}" alt=""width="30px" >Pressure:<br> {{ $current->pressure }}hPa</div>
+                <div class="col-md"><img src="{{ asset('img/icons/dew_point.png') }}" alt=""width="30px" >Dew Point:<br> {{ $current->dew_point }}°C</div>
+                <div class="col-md"><img src="{{ asset('img/icons/visibility.png') }}" alt=""width="30px" >Visibility:<br> {{ $current->visibility }}m</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="hourly container">
+    <h2>Hàng giờ</h2>
+    <div class="abc row">
+        @foreach ($hourly as $h)
+        @if ($loop->index % 6 == 0)
+        <div class="card-day col-md text-center">
+            <div class="container-day">
+                <h3><b>{{ $h->dt }}</b></h3>
+                <img src="{{ $h->weather_icon }}" alt="" width=30 >
+                <h2>{{ $h->temp }}°C</h2>
+                <p>{{ $h->pop*100 }}%</p>
+            </div>
+        </div>
+        @endif
+
+        @endforeach
+
+    </div>
+</div>
 
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
 
-	</body>
+@endsection
 
-</html>
+@section('js')
+<script>
+    $(document).ready(function (){
+        $('.search_select_box select').selectpicker('refresh');
+    });
+
+<script>
+@endsection

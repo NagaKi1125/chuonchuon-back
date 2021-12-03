@@ -17,8 +17,6 @@ class WeatherController extends Controller
     public function daily(){
         $url = "https://api.openweathermap.org/data/2.5/onecall?lat=16.0678&lon=108.2208&exclude=hourly,minutely,current&mode=json&units=metric&appid=b3a64e07a9cb08c942f2d1711c1d47e6";
         $data = Http::get($url)->json();
-
-
         return response()->json($this->reformatDailyJson($data['daily']));
     }
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CloudController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\WeatherExplainController;
+use App\Http\Controllers\WebPageController;
 use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WebPageController::class, 'home'])->name('homepage');
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard');
@@ -32,6 +31,12 @@ require __DIR__.'/auth.php';
 
 
 Route::post('users', [LocationController::class, 'saveLocation'])->name('user.location');
+
+// view
+Route::get('daily-forecast', [WebPageController::class, 'dailyForecast'])->name('daily-forecast');
+Route::get('hourly-forecast',[WebPageController::class, 'hourlyForecast'])->name('hourly-forecast');
+Route::get('about-chuonchuon',[WebPageController::class, 'about_us'])->name('about');
+Route::post('search/city-weather',[WebPageController::class, 'search'])->name('search');
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('users',[AdminController::class, 'user_view'])->name('user.view');

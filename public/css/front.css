@@ -1,0 +1,208 @@
+
+.title{
+    color: white;
+    font-size: 32px;
+    letter-spacing: 4px;
+}
+.wrap-banner{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.dt, .description, .tmin{
+    color: white;
+}
+
+.first-show{
+/* border: 1px solid black; */
+margin: 10px;
+border-radius: 20px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+color:white;
+background-color: #323544;
+display: inline-block;
+padding: 1%;
+}
+
+.item {
+    float: left;
+}
+
+.item-right{
+    float:right;
+}
+
+.item, .item-right{
+    margin-left: 10px;
+}
+
+.collapse{
+    color:white;
+}
+
+.details{
+    border: 1px solid #3d3f46;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+.sun, .moon{
+    padding-left:10px;
+    padding-right:10px;
+}
+img{
+    margin-right: 10px;
+    margin-left:10px;
+    margin-bottom: 5px;
+    background-color: rgb(206, 217, 225);
+    border-radius: 40px;
+    max-width:100%;
+}
+
+.hourly{
+    margin: 5%;color:white;
+}
+
+
+/* home page ============================================== */
+.widget-container {
+    color:white;
+    width: 80%;
+    display: block;
+    background-color: #262936;
+    border-radius: 25px;
+    /* border: 5px solid #eceff1; */
+    margin: 0 auto;
+  }
+
+
+
+
+  /* Bottom-left CSS */
+
+  #temperature,
+  #celsius,
+  #temp-divider,
+  #fahrenheit {
+    display: inline;
+    vertical-align: middle;
+  }
+
+  #temperature {
+    font-size: 60px;
+    font-weight: 800;
+    margin-right: 5px;
+  }
+
+  #celsius {
+    margin-right: 10px;
+  }
+
+  #fahrenheit {
+    margin-right: 5px;
+    color: #b0bec5;
+  }
+
+  #celsius,
+  #temp-divider,
+  #fahrenheit {
+    font-size: 30px;
+    font-weight: 800;
+  }
+
+  #celsius:hover,
+  #fahrenheit:hover {
+    cursor: pointer;
+  }
+
+
+  .card {
+      border-radius: 15px;
+      color: #6f707d
+  }
+
+  .div1 {
+      background: url('https://i.imgur.com/sTfvzrM.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: local;
+      border-radius: 16px 16px 0 0
+  }
+
+  .div2 {
+      height: 30px;
+      background-color: #9fe0fa;
+      border-radius: 0 0 15px 15px
+  }
+
+  h1 {
+      font-size: 65px
+  }
+
+  sup {
+      font-size: 17px;
+      position: relative;
+      top: -2rem
+  }
+
+  *:focus {
+      outline: none
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%;
+    border-radius: 5px;
+    margin-right:10px
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+  .container-day {
+    padding: 2px 16px;
+    text-align:center
+  }
+  .abc{
+      display: flex;
+    flex-flow: row wrap;
+  }
+  .card-day{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 150px;
+    border-radius: 5px;
+    border-radius: 15px;
+    color: #b0bec5;
+    background-color: #262936;
+    margin: 5px;
+  }
+
+  .site-footer{
+    background:#262936 ;
+    margin-top: 20px;
+  }
+  .bi-facebook{
+    margin-left: 10px;
+    margin-top: 12px;
+    margin-bottom: -5px;
+  }
+  .bi-twitter{
+    margin-left: 10px;
+    margin-top: 12px;
+    margin-bottom: -5px;
+  }
+  .bi-youtube{
+    margin-left: 10px;
+    margin-top: 12px;
+    margin-bottom: -6px;
+  }
+
+  footer{
+      color:white;
+  }
