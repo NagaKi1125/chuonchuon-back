@@ -17,11 +17,11 @@ class WebPageController extends Controller
 {
 
     public function dailyForecast(){
-        $ip = file_get_contents('https://www.ip2location.com/');
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         // $lat= $currentUserInfo['latitude'];
         // $lon =$currentUserInfo['longitude'];
-        return $ip;
+        dd($currentUserInfo);
         // $lat = 14.94826;
         // $lon = 108.9125679;
 
@@ -38,7 +38,7 @@ class WebPageController extends Controller
     }
 
     public function hourlyForecast(){
-        $ip = request()->getClientIp();
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -110,7 +110,7 @@ class WebPageController extends Controller
             array_push($city_list, $city);
         }
 
-        $ip = request()->getClientIp();
+        $ip = Request::ip();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
