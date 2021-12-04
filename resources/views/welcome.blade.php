@@ -48,6 +48,7 @@
     <p class="title">CHUỒN CHUỒN - DỰ BÁO THỜI TIẾT</p>
     <form action="{{ route('search') }}" method="GET">
         @csrf
+
         <select name="select" class="selectpicker" data-live-search="true" required>
             @foreach ($cities as $c)
             <option value="{{ $c->country }}, {{ $c->city }}-{{ $c->lat }}-{{ $c->lng }}">

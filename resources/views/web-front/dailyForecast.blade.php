@@ -52,6 +52,8 @@
             $text = "Trăng khuyết thượng huyền";
         }else if($phase > 0.75 && $phase < 1) {
             $text = "Lưỡi liềm thượng huyền";
+        }else{
+            $text = "Trăng";
         }
         $moonphase = $text;
 
