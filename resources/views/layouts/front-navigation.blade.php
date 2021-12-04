@@ -28,6 +28,7 @@
                     <button class="dropbtn"> {{ Auth::user()->name }}</button>
                     <div class="dropdown-content">
                         <form action="{{ route('logout') }}" method="POST">
+                            @csrf
                             <a><button type="submit">Đăng Xuất</button></a>
                         </form>
                     </div>
