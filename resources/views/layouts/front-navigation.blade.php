@@ -27,7 +27,9 @@
                 <div class="dropdown">
                     <button class="dropbtn"> {{ Auth::user()->name }}</button>
                     <div class="dropdown-content">
-                        <a href="{{ route('logout') }}">Đăng Xuất</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            <a><button type="submit">Đăng Xuất</button></a>
+                        </form>
                     </div>
                 </div>
                 @else
