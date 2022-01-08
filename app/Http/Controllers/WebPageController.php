@@ -119,7 +119,7 @@ class WebPageController extends Controller
             array_push($city_list, $city);
         }
 
-        // $ip = $this->getIpAddress();
+        $ip = $this->getIpAddress();
         $currentUserInfo = Location::get($ip);
         $lat= $currentUserInfo->latitude;
         $lon =$currentUserInfo->longitude;
@@ -156,7 +156,7 @@ class WebPageController extends Controller
             }
 
             $weather_desc = Str::ucfirst($weather_desc);
-            $weather_icon_url = secure_asset('img/icongif/'.$weather_icon.'.gif');
+            $weather_icon_url = asset('img/icongif/'.$weather_icon.'.gif');
             $time = Carbon::createFromTimestamp($dw['dt'])->format('d/m');
             $sunrise = Carbon::createFromTimestamp($dw['sunrise'])->format('H:i A');
             $sunset = Carbon::createFromTimestamp($dw['sunset'])->format('H:i A');
@@ -209,7 +209,7 @@ class WebPageController extends Controller
             }
 
             $weather_desc = Str::ucfirst($weather_desc);
-            $weather_icon_url = secure_asset('img/icongif/'.$weather_icon.'.gif');
+            $weather_icon_url = asset('img/icongif/'.$weather_icon.'.gif');
             $time = Carbon::createFromTimestamp($hw['dt'])->format('H:i A');
 
             $hr->dt = $time;
@@ -248,7 +248,7 @@ class WebPageController extends Controller
             $weather_icon = $cw['icon'];
         }
         $weather_desc = Str::ucfirst($weather_desc);
-        $weather_icon_url = secure_asset('img/icongif/'.$weather_icon.'.gif');
+        $weather_icon_url = asset('img/icongif/'.$weather_icon.'.gif');
         $time = Carbon::createFromTimestamp($jsonData['dt'])->format('d/m/Y H:i A');
         $sunrise = Carbon::createFromTimestamp($jsonData['sunrise'])->format('H:i A');
         $sunset = Carbon::createFromTimestamp($jsonData['sunset'])->format('H:i A');
