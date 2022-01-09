@@ -27,11 +27,11 @@
                         {{ __('Clouds Type') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{--  <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('predict.view')" :active="request()->routeIs('predict.view')">
                         {{ __('Predict Result') }}
                     </x-nav-link>
-                </div>
+                </div>  --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('weather_explain.view')" :active="request()->routeIs('weather_explain.view')">
                         {{ __('Explain Weather Elements') }}
